@@ -346,7 +346,11 @@ public class RecordingServiceFileImpl implements RecordingService {
 
     private static void deleteRecording(String id, String path) {
         String[] format = getPlaybackFormats(path);
-        for (String aFormat : format) {
+        deleteRecording(id, path, format);
+    }
+
+    private static void deleteRecording(String id, String path, String[] formats) {
+        for (String aFormat : formats) {
             List<File> recordings = getDirectories(path + File.separatorChar + aFormat);
             for (File recording : recordings) {
                 if (recording.getName().equals(id)) {
@@ -732,4 +736,3 @@ public class RecordingServiceFileImpl implements RecordingService {
     }
 
 }
-
